@@ -9,4 +9,5 @@ const SignIn = () =>
     footerText="Don't you have an account?"
     redirectRoute='/auth/signup'
   />
+
 export default SignIn

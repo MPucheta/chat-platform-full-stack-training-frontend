@@ -1,27 +1,27 @@
 import React from 'react'
 import { Form } from 'formik'
 import AuthenticationForm from '../AuthenticationForm'
-import { createBlankInitialValues, SubmitButton, createInputFieldGroupFromInputs, createStringSchemaFromInputs } from '../util/FormUtils'
-import Input from '../util/Input'
+import { SubmitButton, InputField } from '../util/FormUtils'
+import SignInSchema from '../util/SignInSchema'
 
-const username = new Input('username', 'Username', 'text', true, 'Username is required')
-const password = new Input('password', 'Password', 'text', true, 'Password is required')
+const initialValues = {
+  username: '',
+  password: ''
+}
 
-const inputs = [username, password]
-const initialValues = createBlankInitialValues(inputs)
-const schema = () => createStringSchemaFromInputs(inputs)
 const onSubmitHandler = (values) => console.log(values)
 
 const renderForm = () => (
   <Form>
-    {createInputFieldGroupFromInputs(inputs)}
-    <SubmitButton text='Sign in' />
+    <InputField name='username' placeholder='Username' type='text' />
+    <InputField name='password' placeholder='Password' type='password' />
+    <SubmitButton text='Sign In' />
   </Form>
 )
 
 const signInForm = () => <AuthenticationForm
   initialValues={initialValues}
-  validationSchema={schema}
+  validationSchema={SignInSchema}
   onSubmitHandler={onSubmitHandler}
   renderForm={renderForm}
 />

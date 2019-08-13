@@ -1,5 +1,3 @@
-
-
 .sign-button {
   position: relative;
   left: 50%;
@@ -13,7 +11,6 @@
   border: 0px;
   border-radius: 5px;
 }
-
 
 .form-row { 
   display: block;
@@ -37,6 +34,7 @@
 .fields-container {
   margin-bottom: 10px;
 }
+
 /*these are the underlying classes of the React.Bootstrap components (as showed in the API)*/
 
 .card {
