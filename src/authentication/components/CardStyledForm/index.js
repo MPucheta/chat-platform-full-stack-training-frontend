@@ -9,7 +9,7 @@ export function CardStyledForm ({ form, headerText, footerText, redirectRoute = 
           {headerText}
         </Card.Title>
         <Card.Text as='div'>
-          { form}
+          {form}
         </Card.Text>
         <Card.Link href={redirectRoute}>{footerText}</Card.Link>
       </Card.Body>

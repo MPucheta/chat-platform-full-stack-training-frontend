@@ -11,7 +11,7 @@ const initialValues = {
 
 const onSubmitHandler = (values) => console.log(values)
 
-const renderForm = () => (
+const formBody = () => (
   <Form>
     <InputField name='username' placeholder='Username' type='text' />
     <InputField name='password' placeholder='Password' type='password' />
@@ -19,11 +19,13 @@ const renderForm = () => (
   </Form>
 )
 
-const signInForm = () => <AuthenticationForm
-  initialValues={initialValues}
-  validationSchema={SignInSchema}
-  onSubmitHandler={onSubmitHandler}
-  renderForm={renderForm}
-/>
+const signInForm = () =>
+  <AuthenticationForm
+    initialValues={initialValues}
+    validationSchema={SignInSchema}
+    onSubmitHandler={onSubmitHandler}
+  >
+    {formBody}
+  </AuthenticationForm>
 
 export default signInForm
