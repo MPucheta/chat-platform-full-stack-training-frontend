@@ -1,6 +1,6 @@
 import React from 'react'
-import SignInForm from 'authentication/components/SignInForm'
-import { CardStyledForm } from 'authentication/components/CardStyledForm'
+import SignInForm from '../../components/SignInForm'
+import { CardStyledForm } from '../../components/CardStyledForm'
 
 const SignIn = () =>
   <CardStyledForm

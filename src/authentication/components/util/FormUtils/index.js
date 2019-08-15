@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, ErrorMessage } from 'formik'
-import 'stylesheets/form.css'
+import '../stylesheets/form.css'
 
 export function InputField (props) {
   return (
