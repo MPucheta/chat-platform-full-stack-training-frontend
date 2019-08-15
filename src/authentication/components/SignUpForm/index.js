@@ -15,8 +15,8 @@ const onSubmitHandler = (values) => console.log(values)
 
 const formBody = () => (
   <Form>
-    <InputField name='firstname' placeholder='First name' type='text' />
-    <InputField name='lastname' placeholder='Last name' type='text' />
+    <InputField name='firstname' placeholder='Firstname' type='text' />
+    <InputField name='lastname' placeholder='Lastname' type='text' />
     <InputField name='username' placeholder='Username' type='text' />
     <InputField name='password' placeholder='Password' type='password' />
     <SubmitButton text='Sign Up' />
