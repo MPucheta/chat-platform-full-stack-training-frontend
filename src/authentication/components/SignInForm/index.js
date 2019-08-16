@@ -19,7 +19,7 @@ const formBody = () => (
   </Form>
 )
 
-const signInForm = () =>
+const signInForm = () => (
   <AuthenticationForm
     initialValues={initialValues}
     validationSchema={SignInSchema}
@@ -27,5 +27,6 @@ const signInForm = () =>
   >
     {formBody}
   </AuthenticationForm>
+)
 
 export default signInForm
