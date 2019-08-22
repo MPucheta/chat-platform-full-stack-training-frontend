@@ -16,6 +16,10 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@apollo/react-hooks": "^3.0.1",
+    "apollo-boost": "^0.4.4",
+    "apollo-link-context": "^1.0.18",
+    "graphql": "^14.4.2",
     "react-bootstrap": "^1.0.0-beta.11",
     "react-router-dom": "^5.0.1"
   }
