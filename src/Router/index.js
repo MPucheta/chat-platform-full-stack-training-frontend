@@ -6,7 +6,7 @@ import CurrentUser from '../authentication/pages/CurrentUser'
 
 export default function router () {
   return (
-    <Router >
+    <Router>
       <Route exact path='/' component={SignIn} />
       <Route exact path='/auth/signup' component={SignUp} />
       <Route exact path='/auth/signin' component={SignIn} />

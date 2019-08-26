@@ -27,9 +27,11 @@ function genericButton (className, operationType, text) {
 
 export function AuthenticationErrorMessage (props) {
   return (
-    props.showError && <Alert variant='danger' onClose={() => props.setShowError(false)} dismissible>
-      <strong>Oh snap! </strong> Something went wrong. {props.errorText}
-    </Alert>
+    props.showError && (
+      <Alert variant='danger' onClose={() => props.setShowError(false)} dismissible>
+        <strong>Oh snap! </strong> Something went wrong. {props.errorText}
+      </Alert>
+    )
   )
 }
 

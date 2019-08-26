@@ -6,7 +6,6 @@ import { SubmitButton, InputField, AuthenticationErrorMessage, CurrentUserRedire
 import SignUpSchema from '../util/SignUpSchema'
 import SIGN_UP from '../util/mutations/SIGN_UP'
 import QUERY_CACHE from '../../../Queries/QUERY_CACHE'
-import JWTBypass from '../JWTBypass'
 
 const initialValues = {
   firstname: '',
@@ -72,10 +71,4 @@ function SignUpForm () {
   )
 }
 
-const jwtBypassedSignUp = () => (
-  <JWTBypass>
-    <SignUpForm />
-  </JWTBypass>
-)
-
-export default jwtBypassedSignUp
+export default SignUpForm
