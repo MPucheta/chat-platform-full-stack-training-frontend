@@ -5,7 +5,7 @@ import AuthenticationForm from '../AuthenticationForm'
 import { SubmitButton, InputField, AuthenticationErrorMessage, CurrentUserRedirect } from '../util/FormUtils'
 import SignUpSchema from '../util/SignUpSchema'
 import SIGN_UP from '../util/mutations/SIGN_UP'
-import QUERY_CACHE from '../../../Queries/QUERY_CACHE'
+import query from '../../../Queries/QUERY_CACHE'
 
 const initialValues = {
   firstname: '',
@@ -14,38 +14,30 @@ const initialValues = {
   password: ''
 }
 
-function SignUpForm () {
-  const [showError, setShowError] = useState(false)
-  const [errorText, setErrorText] = useState('Unknown error. ')
-  const [signedUp, setSignedUp] = useState(false)
-  const apolloClient = useApolloClient()
-
-  const [signup] = useMutation(SIGN_UP, {
-    update (cache, mutationResult) {
-      const data = mutationResult.data.signup
-      if (!data.authError) {
-        apolloClient.writeQuery({
-          query: QUERY_CACHE,
-          data: data
-        })
-      }
-    },
-
-    onCompleted (data) {
-      if (data.signup.authError) {
-        setShowError(true)
-        setErrorText(data.signup.authError)
-      } else {
-        console.log('Sign up successful.')
-        setShowError(false)
-        setSignedUp(true)
-      }
+function buildCacheUpdater (apolloClient) {
+  return (cache, mutationResult) => {
+    const data = mutationResult.data.signup
+    if (!data.authError) {
+      apolloClient.writeQuery({ query, data })
     }
-  })
+  }
+}
 
-  const onSubmitHandler = async (signUpInput) => signup({ variables: { signUpInput } })
+function buildStateChanger ({ setShowError, setErrorText, setSignedUp }) {
+  return (data) => {
+    if (data.signup.authError) {
+      setShowError(true)
+      setErrorText('Invalid sign up information.')
+    } else {
+      console.log('Sign up successful.')
+      setShowError(false)
+      setSignedUp(true)
+    }
+  }
+}
 
-  const formBody = () => (
+function buildFormBodyRenderer ({ errorText, showError, setShowError }) {
+  return () => (
     <Form>
       <AuthenticationErrorMessage errorText={errorText} showError={showError} setShowError={setShowError} />
       <InputField name='firstname' placeholder='Firstname' type='text' />
@@ -55,19 +47,31 @@ function SignUpForm () {
       <SubmitButton text='Sign Up' />
     </Form>
   )
+}
+
+function SignUpForm () {
+  const [showError, setShowError] = useState(false)
+  const [errorText, setErrorText] = useState('Unknown error.')
+  const [signedUp, setSignedUp] = useState(false)
+  const apolloClient = useApolloClient()
+
+  const [signup] = useMutation(SIGN_UP, {
+    update: buildCacheUpdater(apolloClient),
+    onCompleted: buildStateChanger({ setShowError, setErrorText, setSignedUp })
+  })
+
+  const onSubmitHandler = (signUpInput) => signup({ variables: { signUpInput } })
+
+  if (signedUp) return <CurrentUserRedirect />
 
   return (
-    signedUp ? (
-      <CurrentUserRedirect />
-    ) : (
-      <AuthenticationForm
-        initialValues={initialValues}
-        validationSchema={SignUpSchema}
-        onSubmitHandler={onSubmitHandler}
-      >
-        {formBody}
-      </AuthenticationForm>
-    )
+    <AuthenticationForm
+      initialValues={initialValues}
+      validationSchema={SignUpSchema}
+      onSubmitHandler={onSubmitHandler}
+    >
+      {buildFormBodyRenderer({ errorText, showError, setShowError })}
+    </AuthenticationForm>
   )
 }
 
