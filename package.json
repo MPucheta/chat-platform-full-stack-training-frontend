@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react": "^16.9.2",
+    "core-js": "^3.2.1",
     "formik": "^1.5.8",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "0.9.5",
+    "react-scripts": "^3.1.1",
     "yup": "^0.27.0"
   },
   "scripts": {
@@ -19,8 +21,11 @@
     "@apollo/react-hooks": "^3.0.1",
     "apollo-boost": "^0.4.4",
     "apollo-link-context": "^1.0.18",
+    "eslint": "^6.3.0",
     "graphql": "^14.4.2",
     "react-bootstrap": "^1.0.0-beta.11",
-    "react-router-dom": "^5.0.1"
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.1.1",
+    "typescript": "^3.6.2"
   }
 }
