@@ -1,8 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Router from './Router'
+import ChatPlatform from './ChatPlatform'
 
-ReactDOM.render(
-  <Router />,
-  document.getElementById('root')
-)
+ReactDOM.render(<ChatPlatform />, document.getElementById('root'))
